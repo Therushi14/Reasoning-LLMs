@@ -27,3 +27,11 @@ The work in these notebooks is informed by the following papers:
 - Compare accuracy of few-shot CoT, zero-shot CoT, and few-shot No-CoT across larger, standard benchmarks (e.g., GSM8K, MultiArith) to quantify gains.
 - Explore zero-shot CoT prompting and trigger phrases (for example, the "Let's think step by step" prompt), and measure how zero-shot instructions compare to few-shot CoT and No-CoT baselines.
 - Run scaling experiments to measure how model size affects CoT benefits and inference cost; record inference time, memory, and accuracy trade-offs.
+
+## Beam Search / Test-time compute experiments
+
+- Reference: Kaplan et al., "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters" (arXiv:2408.03314)
+
+  - Brief summary of the paper: this work studies the trade-off between scaling model parameters (making models larger) versus allocating additional test-time compute (for example by using search, sampling, or ensembling at inference time). The authors show that, under certain conditions, investing compute at test-time (for example via more extensive decoding or ensemble-like strategies) can yield better cost-performance than solely increasing model size. The paper analyzes optimal allocation of compute budget and proposes practical techniques to improve performance given a fixed compute budget.
+
+  - What `Beam_Search.ipynb` does: the notebook explores test-time compute strategies using beam search and related decoding techniques. It implements experiments that compare decoding strategies (beam search variations, beam width, and scoring/length-normalization variants) and records their effect on final-answer extraction and simple accuracy metrics in the context of chain-of-thought style prompts. The notebook is intended as a starting point to study whether allocating more compute at inference (wider beams, more hypotheses) improves reasoning accuracy compared to single-sample greedy/temperature-based decoding.
